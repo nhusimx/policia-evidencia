@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { NivelMadurez, Pilar } from '../../../lib/evaluador-logic'
 import Link from 'next/link'
+import jsPDF from 'jspdf'
 
 export default function ResultadosPage() {
   const [resultado, setResultado] = useState<{
@@ -152,11 +153,125 @@ export default function ResultadosPage() {
               Agendar Consultoría Gratuita
             </Link>
             <button
-              onClick={() => window.print()}
-              className="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 transition"
-            >
-              Descargar Resultados (PDF)
-            </button>
+            onClick={() => {
+              const doc = new jsPDF()
+              
+              // Configuración
+              const pageWidth = doc.internal.pageSize.getWidth()
+              const margin = 20
+              let y = 20
+              
+              // Header
+              doc.setFillColor(59, 130, 246)
+              doc.rect(0, 0, pageWidth, 40, 'F')
+              doc.setTextColor(255, 255, 255)
+              doc.setFontSize(24)
+              doc.text('Resultados de Evaluación', pageWidth / 2, 25, { align: 'center' })
+              
+              // Reset color
+              doc.setTextColor(0, 0, 0)
+              y = 60
+              
+              // Nivel
+              doc.setFontSize(18)
+              doc.setFont('helvetica', 'bold')
+              doc.text(`Nivel ${nivel.nivel}: ${nivel.nombre}`, margin, y)
+              y += 10
+              
+              doc.setFontSize(12)
+              doc.setFont('helvetica', 'normal')
+              doc.text(`Puntuación: ${puntosTotales}/120 (${porcentaje}%)`, margin, y)
+              y += 15
+              
+              // Diagnóstico
+              doc.setFont('helvetica', 'bold')
+              doc.text('Diagnóstico:', margin, y)
+              y += 7
+              doc.setFont('helvetica', 'normal')
+              const diagnosticoLines = doc.splitTextToSize(nivel.diagnostico, pageWidth - 2 * margin)
+              doc.text(diagnosticoLines, margin, y)
+              y += diagnosticoLines.length * 7 + 10
+              
+              // Puntuación por Pilar
+              doc.setFont('helvetica', 'bold')
+              doc.text('Puntuación por Pilar:', margin, y)
+              y += 10
+              doc.setFont('helvetica', 'normal')
+              doc.text(`• Talento Humano: ${puntosPorPilar.talento}/40`, margin + 5, y)
+              y += 7
+              doc.text(`• Procesos: ${puntosPorPilar.procesos}/40`, margin + 5, y)
+              y += 7
+              doc.text(`• Tecnología: ${puntosPorPilar.tecnologia}/40`, margin + 5, y)
+              y += 15
+              
+              // Características
+              doc.setFont('helvetica', 'bold')
+              doc.text('Características de tu Institución:', margin, y)
+              y += 7
+              doc.setFont('helvetica', 'normal')
+              nivel.caracteristicas.forEach((car) => {
+                const lines = doc.splitTextToSize(`• ${car}`, pageWidth - 2 * margin - 5)
+                doc.text(lines, margin + 5, y)
+                y += lines.length * 7
+              })
+              
+              // Nueva página para la ruta
+              doc.addPage()
+              y = 20
+              
+              doc.setFontSize(18)
+              doc.setFont('helvetica', 'bold')
+              doc.text('Tu Ruta de Transformación', margin, y)
+              y += 15
+              
+              doc.setFontSize(12)
+              nivel.ruta.forEach((fase, idx) => {
+                if (y > 250) {
+                  doc.addPage()
+                  y = 20
+                }
+                
+                doc.setFont('helvetica', 'bold')
+                doc.text(`${idx + 1}. ${fase.fase} (${fase.duracion})`, margin, y)
+                y += 7
+                doc.setFont('helvetica', 'normal')
+                const objLines = doc.splitTextToSize(fase.objetivo, pageWidth - 2 * margin - 5)
+                doc.text(objLines, margin + 5, y)
+                y += objLines.length * 7 + 5
+                
+                fase.entregables.forEach((ent) => {
+                  if (y > 270) {
+                    doc.addPage()
+                    y = 20
+                  }
+                  const entLines = doc.splitTextToSize(`  ✓ ${ent}`, pageWidth - 2 * margin - 5)
+                  doc.text(entLines, margin + 5, y)
+                  y += entLines.length * 7
+                })
+                y += 10
+              })
+              
+              // Footer
+              const totalPages = doc.internal.pages.length - 1
+              for (let i = 1; i <= totalPages; i++) {
+                doc.setPage(i)
+                doc.setFontSize(10)
+                doc.setTextColor(128, 128, 128)
+                doc.text(
+                  'Husi Strategics - hola@husi.mx',
+                  pageWidth / 2,
+                  doc.internal.pageSize.getHeight() - 10,
+                  { align: 'center' }
+                )
+              }
+              
+              // Descargar
+              doc.save(`evaluacion-${nivel.nombre.toLowerCase().replace(/ /g, '-')}.pdf`)
+            }}
+            className="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 transition"
+          >
+            Descargar Resultados (PDF)
+          </button>
           </div>
         </div>
 

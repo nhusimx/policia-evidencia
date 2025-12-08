@@ -10,13 +10,16 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@vercel/analytics": "^1.6.1",
     "framer-motion": "^12.23.25",
+    "jspdf": "^3.0.4",
     "lucide-react": "^0.556.0",
     "next": "16.0.7",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-hook-form": "^7.68.0",
     "recharts": "^3.5.1",
+    "resend": "^6.5.2",
     "zod": "^4.1.13"
   },
   "devDependencies": {

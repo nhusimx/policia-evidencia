@@ -37,14 +37,29 @@ export default function FormularioContacto() {
     e.preventDefault()
     setEnviando(true)
 
-    // Simular envío (aquí integrarías con tu servicio de email)
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          tipoConsulta
+        })
+      })
 
-    setEnviando(false)
-    setEnviado(true)
-
-    // Aquí irá la integración real con email
-    console.log('Formulario enviado:', { ...formData, tipoConsulta })
+      if (response.ok) {
+        setEnviado(true)
+        setEnviando(false)
+      } else {
+        throw new Error('Error al enviar')
+      }
+    } catch (error) {
+      console.error('Error:', error)
+      alert('Hubo un error al enviar el formulario. Por favor intenta de nuevo.')
+      setEnviando(false)
+    }
   }
 
   const tiposConsulta = {
