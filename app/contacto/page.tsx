@@ -1,8 +1,11 @@
+import FormularioContacto from '../../components/contacto/FormularioContacto'
+
 export default function Contacto() {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-20">
-      <h1 className="text-4xl font-bold">Contacto</h1>
-      <p className="mt-4 text-gray-600">Formulario próximamente...</p>
+    <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen py-16">
+      <div className="max-w-7xl mx-auto px-4">
+        <FormularioContacto />
+      </div>
     </div>
   )
 }

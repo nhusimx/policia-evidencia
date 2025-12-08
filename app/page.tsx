@@ -1,42 +1,91 @@
+'use client'
+
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 export default function Home() {
   return (
     <div className="bg-gradient-to-b from-blue-50 to-white">
-      {/* Hero Section */}
+      {/* Hero Section con Animaciones */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
+          >
             De la Intuición Policial a la<br />
             <span className="text-blue-600">Inteligencia Territorial</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto"
+          >
             Transformamos instituciones de seguridad reactivas en organizaciones estratégicas basadas en evidencia
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          </motion.p>
+          
+          {/* Dos CTAs lado a lado con animación */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
+          >
             <Link 
               href="/soluciones#evaluador"
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition"
+              className="group bg-white border-2 border-blue-600 p-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
-              Evalúa tu Institución
+              <div className="text-5xl mb-4">📊</div>
+              <h3 className="text-2xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition">
+                Evalúa tu Institución
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Descubre en 2 minutos el nivel de madurez de tu organización y recibe una ruta personalizada de transformación
+              </p>
+              <span className="text-blue-600 font-semibold group-hover:underline">
+                Iniciar Evaluación Gratuita
+              </span>
             </Link>
+
             <Link 
-              href="/casos-estudio"
-              className="bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold border-2 border-blue-600 hover:bg-blue-50 transition"
+              href="/soluciones#simulador"
+              className="group bg-white border-2 border-green-600 p-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
-              Ver Casos de Éxito
+              <div className="text-5xl mb-4">🎯</div>
+              <h3 className="text-2xl font-bold mb-3 text-gray-900 group-hover:text-green-600 transition">
+                Simula una Intervención
+              </h3>
+              <p className="text-gray-600 mb-4">
+                Explora cómo funciona nuestro modelo de 4 hélices para reducir delitos específicos en tu territorio
+              </p>
+              <span className="text-green-600 font-semibold group-hover:underline">
+                Ver Simulador Interactivo
+              </span>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Problema vs Solución */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h2 className="text-3xl font-bold text-center mb-12">El Cambio que Necesitas</h2>
+        <motion.h2 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl font-bold text-center mb-12"
+        >
+          El Cambio que Necesitas
+        </motion.h2>
+        
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
-              titulo: "Institución Reactiva",
+              tipo: "Institución Reactiva",
               items: [
                 "Patrullaje aleatorio",
                 "Decisiones por intuición",
@@ -44,10 +93,11 @@ export default function Home() {
                 "Sin coordinación",
                 "Capacitación esporádica"
               ],
-              color: "red"
+              color: "border-red-500",
+              badge: "❌ Situación Actual"
             },
             {
-              titulo: "En Transición",
+              tipo: "En Transición",
               items: [
                 "Análisis básicos",
                 "Capacitación sin evaluación",
@@ -55,10 +105,11 @@ export default function Home() {
                 "Coordinación informal",
                 "Resultados no medibles"
               ],
-              color: "yellow"
+              color: "border-yellow-500",
+              badge: "⚠️ Riesgo de Estancamiento"
             },
             {
-              titulo: "Basada en Evidencia",
+              tipo: "Basada en Evidencia",
               items: [
                 "Análisis predictivo",
                 "Personal certificado",
@@ -66,11 +117,22 @@ export default function Home() {
                 "Coordinación formal",
                 "Mejora continua"
               ],
-              color: "green"
+              color: "border-green-500",
+              badge: "✅ Objetivo"
             }
           ].map((columna, idx) => (
-            <div key={idx} className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-4">{columna.titulo}</h3>
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.2 }}
+              className={`bg-white p-6 rounded-lg shadow-md border-l-4 ${columna.color} hover:shadow-xl transition-shadow`}
+            >
+              <span className="text-xs font-semibold bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block">
+                {columna.badge}
+              </span>
+              <h3 className="text-xl font-bold mb-4">{columna.tipo}</h3>
               <ul className="space-y-2">
                 {columna.items.map((item, i) => (
                   <li key={i} className="flex items-start">
@@ -79,8 +141,63 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* Tres Pilares */}
+      <section className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl font-bold mb-4">Nuestro Modelo de Transformación</h2>
+            <p className="text-xl text-gray-600">
+              Tres pilares integrados para resultados sostenibles
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icono: '👥',
+                titulo: 'Talento Humano',
+                descripcion: 'Capacitación especializada y evaluación de competencias para profesionalizar tu equipo de análisis criminal',
+                color: 'bg-purple-50'
+              },
+              {
+                icono: '⚙️',
+                titulo: 'Procesos',
+                descripcion: 'Diseño e implementación de procedimientos que institucionalizan la operación basada en evidencia',
+                color: 'bg-green-50'
+              },
+              {
+                icono: '💻',
+                titulo: 'Tecnología',
+                descripcion: 'Sistema de análisis que automatiza la ingesta de datos y genera inteligencia accionable',
+                color: 'bg-blue-50'
+              }
+            ].map((pilar, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.15 }}
+                whileHover={{ scale: 1.05 }}
+                className={`${pilar.color} p-8 rounded-xl cursor-pointer transition-shadow hover:shadow-xl`}
+              >
+                <div className="text-5xl mb-4">{pilar.icono}</div>
+                <h3 className="text-xl font-bold mb-3">{pilar.titulo}</h3>
+                <p className="text-gray-700">{pilar.descripcion}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -91,14 +208,22 @@ export default function Home() {
             ¿Listo para Transformar tu Institución?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Comienza con una evaluación gratuita de madurez institucional
+            Comienza con una evaluación gratuita o explora nuestras soluciones
           </p>
-          <Link 
-            href="/soluciones"
-            className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition"
-          >
-            Evaluar mi Institución
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href="/soluciones#evaluador"
+              className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition"
+            >
+              Evaluar mi Institución
+            </Link>
+            <Link 
+              href="/contacto"
+              className="inline-block bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-800 transition border-2 border-white"
+            >
+              Contactar
+            </Link>
+          </div>
         </div>
       </section>
     </div>
