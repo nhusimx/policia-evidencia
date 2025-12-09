@@ -8,7 +8,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50">
+    <nav className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           {/* Logo */}
@@ -16,19 +16,25 @@ export default function Navbar() {
             <Image 
               src="/hu-logo-transparente.png" 
               alt="Husi Strategics" 
-              width={400}
-              height={130}
-              className="w-48 h-auto md:w-56"
+              width={350}
+              height={110}
+              className="h-20 w-auto"
               priority
             />
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8 items-center">
-            <Link href="/soluciones" className="text-gray-700 hover:text-blue-600 transition font-medium">
+            <Link 
+              href="/soluciones" 
+              className="text-neutral-text hover:text-husi-accent transition font-medium"
+            >
               Soluciones
             </Link>
-            <Link href="/contacto" className="bg-blue-600 text-white px-6 py-2.5 rounded-md hover:bg-blue-700 transition font-medium">
+            <Link 
+              href="/contacto" 
+              className="bg-husi-dark text-white px-6 py-2.5 rounded-md hover:bg-husi-medium transition font-medium"
+            >
               Contacto
             </Link>
           </div>
@@ -36,7 +42,7 @@ export default function Navbar() {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-700"
+            className="md:hidden text-neutral-text"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isOpen ? (
@@ -51,10 +57,16 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden pb-4 space-y-2">
-            <Link href="/soluciones" className="block text-gray-700 hover:text-blue-600 py-2">
+            <Link 
+              href="/soluciones" 
+              className="block text-neutral-text hover:text-husi-accent py-2"
+            >
               Soluciones
             </Link>
-            <Link href="/contacto" className="block bg-blue-600 text-white px-4 py-2 rounded-md text-center">
+            <Link 
+              href="/contacto" 
+              className="block bg-husi-dark text-white px-4 py-2 rounded-md text-center hover:bg-husi-medium transition"
+            >
               Contacto
             </Link>
           </div>

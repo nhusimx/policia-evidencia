@@ -5,25 +5,25 @@ import { motion } from 'framer-motion'
 
 export default function Home() {
   return (
-    <div className="bg-gradient-to-b from-blue-50 to-white">
-      {/* Hero Section con Animaciones */}
+    <div className="bg-gradient-to-b from-neutral-light to-white">
+      {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-6xl font-bold text-gray-900 mb-6"
+            className="text-4xl md:text-6xl font-bold text-neutral-text mb-6"
           >
             De la Intuición Policial a la<br />
-            <span className="text-blue-600">Inteligencia Territorial</span>
+            <span className="text-husi-dark">Inteligencia Territorial</span>
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto"
+            className="text-xl text-neutral-gray mb-8 max-w-3xl mx-auto"
           >
             Transformamos instituciones de seguridad reactivas en organizaciones estratégicas basadas en evidencia
           </motion.p>
@@ -37,32 +37,32 @@ export default function Home() {
           >
             <Link 
               href="/soluciones#evaluador"
-              className="group bg-white border-2 border-blue-600 p-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+              className="group bg-white border-2 border-husi-dark p-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
               <div className="text-5xl mb-4">📊</div>
-              <h3 className="text-2xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition">
+              <h3 className="text-2xl font-bold mb-3 text-neutral-text group-hover:text-husi-dark transition">
                 Evalúa tu Institución
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-neutral-gray mb-4">
                 Descubre en 2 minutos el nivel de madurez de tu organización y recibe una ruta personalizada de transformación
               </p>
-              <span className="text-blue-600 font-semibold group-hover:underline">
+              <span className="text-husi-dark font-semibold group-hover:underline">
                 Iniciar Evaluación Gratuita
               </span>
             </Link>
 
             <Link 
               href="/soluciones#simulador"
-              className="group bg-white border-2 border-green-600 p-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+              className="group bg-white border-2 border-husi-accent p-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
             >
               <div className="text-5xl mb-4">🎯</div>
-              <h3 className="text-2xl font-bold mb-3 text-gray-900 group-hover:text-green-600 transition">
+              <h3 className="text-2xl font-bold mb-3 text-neutral-text group-hover:text-husi-accent transition">
                 Simula una Intervención
               </h3>
-              <p className="text-gray-600 mb-4">
+              <p className="text-neutral-gray mb-4">
                 Explora cómo funciona nuestro modelo de 4 hélices para reducir delitos específicos en tu territorio
               </p>
-              <span className="text-green-600 font-semibold group-hover:underline">
+              <span className="text-husi-accent font-semibold group-hover:underline">
                 Ver Simulador Interactivo
               </span>
             </Link>
@@ -93,7 +93,8 @@ export default function Home() {
                 "Sin coordinación",
                 "Capacitación esporádica"
               ],
-              color: "border-red-500",
+              color: "border-neutral-gray",  // ← Cambió de border-red-500
+              bgColor: "bg-gray-50",         // ← Nuevo
               badge: "❌ Situación Actual"
             },
             {
@@ -105,7 +106,8 @@ export default function Home() {
                 "Coordinación informal",
                 "Resultados no medibles"
               ],
-              color: "border-yellow-500",
+              color: "border-husi-medium",   // ← Cambió de border-yellow-500
+              bgColor: "bg-husi-light/5",    // ← Nuevo
               badge: "⚠️ Riesgo de Estancamiento"
             },
             {
@@ -117,7 +119,8 @@ export default function Home() {
                 "Coordinación formal",
                 "Mejora continua"
               ],
-              color: "border-green-500",
+              color: "border-husi-accent",   // ← Ya estaba bien
+              bgColor: "bg-husi-accent/5",   // ← Nuevo
               badge: "✅ Objetivo"
             }
           ].map((columna, idx) => (
@@ -127,17 +130,17 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.2 }}
-              className={`bg-white p-6 rounded-lg shadow-md border-l-4 ${columna.color} hover:shadow-xl transition-shadow`}
+              className={`${columna.bgColor} p-6 rounded-lg shadow-md border-l-4 ${columna.color} hover:shadow-xl transition-shadow`}
             >
-              <span className="text-xs font-semibold bg-gray-100 px-3 py-1 rounded-full mb-3 inline-block">
+              <span className="text-xs font-semibold bg-white px-3 py-1 rounded-full mb-3 inline-block border border-gray-200">
                 {columna.badge}
               </span>
-              <h3 className="text-xl font-bold mb-4">{columna.tipo}</h3>
+              <h3 className="text-xl font-bold mb-4 text-husi-dark">{columna.tipo}</h3>
               <ul className="space-y-2">
                 {columna.items.map((item, i) => (
                   <li key={i} className="flex items-start">
-                    <span className="mr-2">•</span>
-                    <span className="text-gray-700">{item}</span>
+                    <span className="mr-2 text-husi-dark">•</span>
+                    <span className="text-neutral-gray">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -157,7 +160,7 @@ export default function Home() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl font-bold mb-4">Nuestro Modelo de Transformación</h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-neutral-gray">
               Tres pilares integrados para resultados sostenibles
             </p>
           </motion.div>
@@ -168,19 +171,22 @@ export default function Home() {
                 icono: '👥',
                 titulo: 'Talento Humano',
                 descripcion: 'Capacitación especializada y evaluación de competencias para profesionalizar tu equipo de análisis criminal',
-                color: 'bg-purple-50'
+                color: 'bg-husi-dark/5',        // ← Cambió de bg-purple-50
+                borderColor: 'border-husi-dark' // ← Nuevo
               },
               {
                 icono: '⚙️',
                 titulo: 'Procesos',
                 descripcion: 'Diseño e implementación de procedimientos que institucionalizan la operación basada en evidencia',
-                color: 'bg-green-50'
+                color: 'bg-husi-medium/5',         // ← Cambió
+                borderColor: 'border-husi-medium'  // ← Nuevo
               },
               {
                 icono: '💻',
                 titulo: 'Tecnología',
                 descripcion: 'Sistema de análisis que automatiza la ingesta de datos y genera inteligencia accionable',
-                color: 'bg-blue-50'
+                color: 'bg-husi-accent/5',        // ← Cambió
+                borderColor: 'border-husi-accent' // ← Nuevo
               }
             ].map((pilar, idx) => (
               <motion.div 
@@ -190,11 +196,11 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.15 }}
                 whileHover={{ scale: 1.05 }}
-                className={`${pilar.color} p-8 rounded-xl cursor-pointer transition-shadow hover:shadow-xl`}
+                className={`${pilar.color} p-8 rounded-xl cursor-pointer transition-shadow hover:shadow-xl border-2 ${pilar.borderColor}`}
               >
                 <div className="text-5xl mb-4">{pilar.icono}</div>
-                <h3 className="text-xl font-bold mb-3">{pilar.titulo}</h3>
-                <p className="text-gray-700">{pilar.descripcion}</p>
+                <h3 className="text-xl font-bold mb-3 text-husi-dark">{pilar.titulo}</h3>
+                <p className="text-neutral-gray">{pilar.descripcion}</p>
               </motion.div>
             ))}
           </div>
@@ -202,7 +208,7 @@ export default function Home() {
       </section>
 
       {/* CTA Final */}
-      <section className="bg-blue-600 text-white py-16">
+      <section className="bg-husi-dark text-white py-16">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             ¿Listo para Transformar tu Institución?
@@ -213,13 +219,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/soluciones#evaluador"
-              className="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition"
+              className="inline-block bg-white text-husi-dark px-8 py-3 rounded-lg text-lg font-semibold hover:bg-neutral-light transition"
             >
               Evaluar mi Institución
             </Link>
             <Link 
               href="/contacto"
-              className="inline-block bg-blue-700 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-800 transition border-2 border-white"
+              className="inline-block bg-husi-medium text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-husi-accent transition border-2 border-white"
             >
               Contactar
             </Link>
