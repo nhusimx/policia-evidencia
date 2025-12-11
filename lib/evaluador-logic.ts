@@ -155,18 +155,18 @@ export const preguntasEvaluador: Pregunta[] = [
 export interface NivelMadurez {
   nivel: number
   nombre: string
-  rango: [number, number]
+  rango: [number, number]  // ← Cambiar puntos por rango
   diagnostico: string
   caracteristicas: string[]
-  riesgos: string[]
+  riesgos?: string[]
   ruta: {
     fase: string
     duracion: string
     objetivo: string
     entregables: string[]
   }[]
-  inversion_estimada: string
-  retorno_esperado: string
+  inversion_estimada?: string
+  retorno_esperado?: string
   caso_exito?: {
     institucion: string
     situacion_inicial: string

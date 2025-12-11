@@ -15,63 +15,23 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-4xl md:text-6xl font-bold text-neutral-text mb-6"
           >
-            De la Intuición Policial a la<br />
-            <span className="text-husi-dark">Inteligencia Territorial</span>
+            Transformamos Organizaciones con<br />
+            <span className="text-husi-dark">Metodologías Basadas en Evidencia</span>
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl text-neutral-gray mb-8 max-w-3xl mx-auto"
+            className="text-xl text-neutral-gray mb-12 max-w-3xl mx-auto"
           >
-            Transformamos instituciones de seguridad reactivas en organizaciones estratégicas basadas en evidencia
+            Soluciones especializadas para el sector público y privado
           </motion.p>
-          
-          {/* Dos CTAs lado a lado con animación */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
-          >
-            <Link 
-              href="/soluciones#evaluador"
-              className="group bg-white border-2 border-husi-dark p-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
-            >
-              <div className="text-5xl mb-4">📊</div>
-              <h3 className="text-2xl font-bold mb-3 text-neutral-text group-hover:text-husi-dark transition">
-                Evalúa tu Institución
-              </h3>
-              <p className="text-neutral-gray mb-4">
-                Descubre en 2 minutos el nivel de madurez de tu organización y recibe una ruta personalizada de transformación
-              </p>
-              <span className="text-husi-dark font-semibold group-hover:underline">
-                Iniciar Evaluación Gratuita
-              </span>
-            </Link>
-
-            <Link 
-              href="/soluciones#simulador"
-              className="group bg-white border-2 border-husi-accent p-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
-            >
-              <div className="text-5xl mb-4">🎯</div>
-              <h3 className="text-2xl font-bold mb-3 text-neutral-text group-hover:text-husi-accent transition">
-                Simula una Intervención
-              </h3>
-              <p className="text-neutral-gray mb-4">
-                Explora cómo funciona nuestro modelo de 4 hélices para reducir delitos específicos en tu territorio
-              </p>
-              <span className="text-husi-accent font-semibold group-hover:underline">
-                Ver Simulador Interactivo
-              </span>
-            </Link>
-          </motion.div>
         </div>
       </section>
 
-      {/* Problema vs Solución */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      {/* Dos Sectores con Evaluadores Integrados */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <motion.h2 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -79,77 +39,129 @@ export default function Home() {
           transition={{ duration: 0.6 }}
           className="text-3xl font-bold text-center mb-12"
         >
-          El Cambio que Necesitas
+          ¿Qué describe mejor tu organización?
         </motion.h2>
-        
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              tipo: "Institución Reactiva",
-              items: [
-                "Patrullaje aleatorio",
-                "Decisiones por intuición",
-                "Datos dispersos",
-                "Sin coordinación",
-                "Capacitación esporádica"
-              ],
-              color: "border-neutral-gray",  // ← Cambió de border-red-500
-              bgColor: "bg-gray-50",         // ← Nuevo
-              badge: "❌ Situación Actual"
-            },
-            {
-              tipo: "En Transición",
-              items: [
-                "Análisis básicos",
-                "Capacitación sin evaluación",
-                "Tecnología fragmentada",
-                "Coordinación informal",
-                "Resultados no medibles"
-              ],
-              color: "border-husi-medium",   // ← Cambió de border-yellow-500
-              bgColor: "bg-husi-light/5",    // ← Nuevo
-              badge: "⚠️ Riesgo de Estancamiento"
-            },
-            {
-              tipo: "Basada en Evidencia",
-              items: [
-                "Análisis predictivo",
-                "Personal certificado",
-                "Sistema integrado",
-                "Coordinación formal",
-                "Mejora continua"
-              ],
-              color: "border-husi-accent",   // ← Ya estaba bien
-              bgColor: "bg-husi-accent/5",   // ← Nuevo
-              badge: "✅ Objetivo"
-            }
-          ].map((columna, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.2 }}
-              className={`${columna.bgColor} p-6 rounded-lg shadow-md border-l-4 ${columna.color} hover:shadow-xl transition-shadow`}
-            >
-              <span className="text-xs font-semibold bg-white px-3 py-1 rounded-full mb-3 inline-block border border-gray-200">
-                {columna.badge}
-              </span>
-              <h3 className="text-xl font-bold mb-4 text-husi-dark">{columna.tipo}</h3>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* SECTOR PÚBLICO */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-white border-2 border-husi-dark/20 rounded-2xl p-8 hover:shadow-2xl transition-all"
+          >
+            {/* Header */}
+            <div className="text-center mb-6">
+              <div className="text-6xl mb-4">🏛️</div>
+              <h3 className="text-3xl font-bold text-husi-dark mb-3">
+                Sector Público
+              </h3>
+              <p className="text-neutral-gray">
+                Instituciones de seguridad pública, procuradurías y fuerzas del orden
+              </p>
+            </div>
+
+            {/* Servicios */}
+            <div className="mb-6">
+              <h4 className="font-semibold text-husi-dark mb-3">Nuestras soluciones:</h4>
               <ul className="space-y-2">
-                {columna.items.map((item, i) => (
-                  <li key={i} className="flex items-start">
-                    <span className="mr-2 text-husi-dark">•</span>
-                    <span className="text-neutral-gray">{item}</span>
-                  </li>
-                ))}
+                <li className="flex items-start text-sm text-neutral-gray">
+                  <span className="text-husi-dark mr-2">•</span>
+                  Transformación institucional integral
+                </li>
+                <li className="flex items-start text-sm text-neutral-gray">
+                  <span className="text-husi-dark mr-2">•</span>
+                  Análisis criminal basado en evidencia
+                </li>
+                <li className="flex items-start text-sm text-neutral-gray">
+                  <span className="text-husi-dark mr-2">•</span>
+                  Intervenciones territoriales focalizadas
+                </li>
               </ul>
-            </motion.div>
-          ))}
+            </div>
+
+            {/* CTAs */}
+            <div className="space-y-3">
+              <Link
+                href="/soluciones/publico#evaluador"
+                className="block w-full bg-husi-dark text-white text-center px-6 py-4 rounded-lg font-semibold hover:bg-husi-medium transition"
+              >
+                📊 Evalúa tu Institución
+                <span className="block text-sm font-normal opacity-90 mt-1">
+                  Diagnóstico de madurez institucional (2 min)
+                </span>
+              </Link>
+              <Link
+                href="/soluciones/publico"
+                className="block w-full bg-white text-husi-dark text-center px-6 py-3 rounded-lg font-semibold border-2 border-husi-dark hover:bg-husi-dark/5 transition"
+              >
+                Ver Soluciones Completas
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* SECTOR PRIVADO */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="bg-white border-2 border-husi-accent/20 rounded-2xl p-8 hover:shadow-2xl transition-all"
+          >
+            {/* Header */}
+            <div className="text-center mb-6">
+              <div className="text-6xl mb-4">🏢</div>
+              <h3 className="text-3xl font-bold text-husi-accent mb-3">
+                Sector Privado
+              </h3>
+              <p className="text-neutral-gray">
+                Empresas y corporativos que gestionan gobernanza, riesgos y cumplimiento
+              </p>
+            </div>
+
+            {/* Servicios */}
+            <div className="mb-6">
+              <h4 className="font-semibold text-husi-accent mb-3">Nuestras soluciones:</h4>
+              <ul className="space-y-2">
+                <li className="flex items-start text-sm text-neutral-gray">
+                  <span className="text-husi-accent mr-2">•</span>
+                  Gobierno corporativo
+                </li>
+                <li className="flex items-start text-sm text-neutral-gray">
+                  <span className="text-husi-accent mr-2">•</span>
+                  Gestión de riesgos estratégicos y operacionales
+                </li>
+                <li className="flex items-start text-sm text-neutral-gray">
+                  <span className="text-husi-accent mr-2">•</span>
+                  Cumplimiento normativo nacional e internacional
+                </li>
+              </ul>
+            </div>
+
+            {/* CTAs */}
+            <div className="space-y-3">
+              <Link
+                href="/evaluadores/grc"
+                className="block w-full bg-husi-accent text-white text-center px-6 py-4 rounded-lg font-semibold hover:bg-husi-light transition"
+              >
+                🎯 Evalúa tu Empresa
+                <span className="block text-sm font-normal opacity-90 mt-1">
+                  Diagnóstico de madurez GRC (8 min)
+                </span>
+              </Link>
+              <Link
+                href="/soluciones/privado"
+                className="block w-full bg-white text-husi-accent text-center px-6 py-3 rounded-lg font-semibold border-2 border-husi-accent hover:bg-husi-accent/5 transition"
+              >
+                Ver Soluciones Completas
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Tres Pilares */}
+      {/* Nuestro Modelo: Tres Pilares Transversales */}
       <section className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
@@ -161,7 +173,7 @@ export default function Home() {
           >
             <h2 className="text-3xl font-bold mb-4">Nuestro Modelo de Transformación</h2>
             <p className="text-xl text-neutral-gray">
-              Tres pilares integrados para resultados sostenibles
+              Tres pilares integrados que aplicamos en ambos sectores
             </p>
           </motion.div>
 
@@ -170,23 +182,26 @@ export default function Home() {
               {
                 icono: '👥',
                 titulo: 'Talento Humano',
-                descripcion: 'Capacitación especializada y evaluación de competencias para profesionalizar tu equipo de análisis criminal',
-                color: 'bg-husi-dark/5',        // ← Cambió de bg-purple-50
-                borderColor: 'border-husi-dark' // ← Nuevo
+                descripcion: 'Ajustamos la capacitación con base en un modelo de competencias definido para cada organización',
+                color: 'bg-husi-dark/5',
+                borderColor: 'border-husi-dark',
+                ejemplos: ['Evaluación de competencias', 'Programas de capacitación especializados', 'Desarrollo de liderazgo']
               },
               {
                 icono: '⚙️',
                 titulo: 'Procesos',
                 descripcion: 'Diseño e implementación de procedimientos que institucionalizan la operación basada en evidencia',
-                color: 'bg-husi-medium/5',         // ← Cambió
-                borderColor: 'border-husi-medium'  // ← Nuevo
+                color: 'bg-husi-medium/5',
+                borderColor: 'border-husi-medium',
+                ejemplos: ['Mapeo y optimización de procesos', 'Procedimientos operativos estandarizados', 'Gestión del cambio']
               },
               {
                 icono: '💻',
                 titulo: 'Tecnología',
-                descripcion: 'Sistema de análisis que automatiza la ingesta de datos y genera inteligencia accionable',
-                color: 'bg-husi-accent/5',        // ← Cambió
-                borderColor: 'border-husi-accent' // ← Nuevo
+                descripcion: 'Sistemas que automatizan la ingesta de datos y generan inteligencia accionable',
+                color: 'bg-husi-accent/5',
+                borderColor: 'border-husi-accent',
+                ejemplos: ['Plataformas de análisis', 'Automatización de controles', 'Dashboards ejecutivos']
               }
             ].map((pilar, idx) => (
               <motion.div 
@@ -195,12 +210,26 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.15 }}
-                whileHover={{ scale: 1.05 }}
-                className={`${pilar.color} p-8 rounded-xl cursor-pointer transition-shadow hover:shadow-xl border-2 ${pilar.borderColor}`}
+                className={`${pilar.color} p-8 rounded-xl border-2 ${pilar.borderColor} hover:shadow-xl transition-shadow`}
               >
                 <div className="text-5xl mb-4">{pilar.icono}</div>
                 <h3 className="text-xl font-bold mb-3 text-husi-dark">{pilar.titulo}</h3>
-                <p className="text-neutral-gray">{pilar.descripcion}</p>
+                <p className="text-neutral-gray mb-4">{pilar.descripcion}</p>
+                
+                {/* Ejemplos expandibles */}
+                <details className="text-sm">
+                  <summary className="cursor-pointer text-husi-dark font-semibold hover:text-husi-accent transition">
+                    Ver servicios incluidos
+                  </summary>
+                  <ul className="mt-3 space-y-1">
+                    {pilar.ejemplos.map((ejemplo, i) => (
+                      <li key={i} className="text-neutral-gray flex items-start">
+                        <span className="text-husi-accent mr-2">→</span>
+                        {ejemplo}
+                      </li>
+                    ))}
+                  </ul>
+                </details>
               </motion.div>
             ))}
           </div>
@@ -211,25 +240,17 @@ export default function Home() {
       <section className="bg-husi-dark text-white py-16">
         <div className="max-w-4xl mx-auto text-center px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            ¿Listo para Transformar tu Institución?
+            ¿Listo para Transformar tu Organización?
           </h2>
           <p className="text-xl mb-8 opacity-90">
-            Comienza con una evaluación gratuita o explora nuestras soluciones
+            Agenda una consultoría personalizada sin costo
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/soluciones#evaluador"
-              className="inline-block bg-white text-husi-dark px-8 py-3 rounded-lg text-lg font-semibold hover:bg-neutral-light transition"
-            >
-              Evaluar mi Institución
-            </Link>
-            <Link 
-              href="/contacto"
-              className="inline-block bg-husi-medium text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-husi-accent transition border-2 border-white"
-            >
-              Contactar
-            </Link>
-          </div>
+          <Link 
+            href="/contacto"
+            className="inline-block bg-white text-husi-dark px-10 py-4 rounded-lg text-lg font-semibold hover:bg-neutral-light transition"
+          >
+            Contactar
+          </Link>
         </div>
       </section>
     </div>

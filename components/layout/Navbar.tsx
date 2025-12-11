@@ -26,10 +26,22 @@ export default function Navbar() {
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8 items-center">
             <Link 
-              href="/soluciones" 
+              href="/soluciones/publico" 
               className="text-neutral-text hover:text-husi-accent transition font-medium"
             >
-              Soluciones
+              Sector Público
+            </Link>
+            <Link 
+              href="/soluciones/privado" 
+              className="text-neutral-text hover:text-husi-accent transition font-medium"
+            >
+              Sector Privado
+            </Link>
+            <Link 
+              href="/evaluadores" 
+              className="text-neutral-text hover:text-husi-accent transition font-medium"
+            >
+              Evaluadores
             </Link>
             <Link 
               href="/contacto" 
@@ -58,14 +70,30 @@ export default function Navbar() {
         {isOpen && (
           <div className="md:hidden pb-4 space-y-2">
             <Link 
-              href="/soluciones" 
-              className="block text-neutral-text hover:text-husi-accent py-2"
+              href="/soluciones/publico" 
+              className="block text-neutral-text hover:text-husi-accent py-2 transition"
+              onClick={() => setIsOpen(false)}
             >
-              Soluciones
+              Sector Público
+            </Link>
+            <Link 
+              href="/soluciones/privado" 
+              className="block text-neutral-text hover:text-husi-accent py-2 transition"
+              onClick={() => setIsOpen(false)}
+            >
+              Sector Privado
+            </Link>
+            <Link 
+              href="/evaluadores" 
+              className="block text-neutral-text hover:text-husi-accent py-2 transition"
+              onClick={() => setIsOpen(false)}
+            >
+              Evaluadores
             </Link>
             <Link 
               href="/contacto" 
               className="block bg-husi-dark text-white px-4 py-2 rounded-md text-center hover:bg-husi-medium transition"
+              onClick={() => setIsOpen(false)}
             >
               Contacto
             </Link>

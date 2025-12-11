@@ -2,15 +2,15 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { preguntasEvaluador } from '../../lib/evaluador-logic'
+import { preguntasGRC } from '../../lib/evaluador-grc-logic'
 
-export default function EvaluadorQuiz() {
+export default function EvaluadorGRC() {
   const router = useRouter()
   const [preguntaActual, setPreguntaActual] = useState(0)
   const [respuestas, setRespuestas] = useState<Record<number, number>>({})
 
-  const pregunta = preguntasEvaluador[preguntaActual]
-  const progreso = ((preguntaActual + 1) / preguntasEvaluador.length) * 100
+  const pregunta = preguntasGRC[preguntaActual]
+  const progreso = ((preguntaActual + 1) / preguntasGRC.length) * 100
 
   const handleRespuesta = (valor: number) => {
     const nuevasRespuestas = {
@@ -20,11 +20,11 @@ export default function EvaluadorQuiz() {
     setRespuestas(nuevasRespuestas)
 
     // Guardar en localStorage
-    localStorage.setItem('evaluadorRespuestas', JSON.stringify(nuevasRespuestas))
+    localStorage.setItem('evaluadorGRCRespuestas', JSON.stringify(nuevasRespuestas))
 
     // Si es la última pregunta, ir a resultados
-    if (preguntaActual === preguntasEvaluador.length - 1) {
-      router.push('/soluciones/publico/resultados')
+    if (preguntaActual === preguntasGRC.length - 1) {
+      router.push('/evaluadores/grc/resultados')
     } else {
       setPreguntaActual(preguntaActual + 1)
     }
@@ -36,17 +36,21 @@ export default function EvaluadorQuiz() {
     }
   }
 
-  // Mapeo de colores por pilar
-  const coloresPilar = {
-    talento: 'bg-husi-dark',
-    procesos: 'bg-husi-medium',
-    tecnologia: 'bg-husi-accent'
+  // Mapeo de colores por dimensión
+  const coloresDimension = {
+    gobernanza: 'bg-husi-dark',
+    riesgos_estrategicos: 'bg-husi-medium',
+    riesgos_operacionales: 'bg-husi-accent',
+    cumplimiento: 'bg-husi-light',
+    cultura: 'bg-purple-500'
   }
 
-  const nombresPilar = {
-    talento: 'Talento Humano',
-    procesos: 'Procesos',
-    tecnologia: 'Tecnología'
+  const nombresDimension = {
+    gobernanza: 'Gobernanza',
+    riesgos_estrategicos: 'Riesgos Estratégicos',
+    riesgos_operacionales: 'Riesgos Operacionales',
+    cumplimiento: 'Cumplimiento',
+    cultura: 'Cultura de Integridad'
   }
 
   return (
@@ -55,10 +59,10 @@ export default function EvaluadorQuiz() {
       <div className="mb-8">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm font-semibold text-neutral-gray">
-            Pregunta {preguntaActual + 1} de {preguntasEvaluador.length}
+            Pregunta {preguntaActual + 1} de {preguntasGRC.length}
           </span>
-          <span className={`text-xs font-semibold px-3 py-1 rounded-full text-white ${coloresPilar[pregunta.pilar]}`}>
-            {nombresPilar[pregunta.pilar]}
+          <span className={`text-xs font-semibold px-3 py-1 rounded-full text-white ${coloresDimension[pregunta.dimension]}`}>
+            {nombresDimension[pregunta.dimension]}
           </span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-3">
@@ -72,7 +76,7 @@ export default function EvaluadorQuiz() {
       {/* Pregunta */}
       <div className="bg-white rounded-xl shadow-lg p-8 mb-6 border-2 border-husi-light/20">
         <h3 className="text-xl font-bold text-husi-dark mb-6">
-          {pregunta.pregunta}
+          {pregunta.texto}
         </h3>
 
         {/* Opciones */}
@@ -80,20 +84,20 @@ export default function EvaluadorQuiz() {
           {pregunta.opciones.map((opcion, idx) => (
             <button
               key={idx}
-              onClick={() => handleRespuesta(opcion.puntos)}
+              onClick={() => handleRespuesta(opcion.valor)}
               className={`w-full text-left p-4 rounded-lg border-2 transition-all ${
-                respuestas[pregunta.id] === opcion.puntos
+                respuestas[pregunta.id] === opcion.valor
                   ? 'border-husi-dark bg-husi-dark/5'
                   : 'border-gray-200 hover:border-husi-accent hover:bg-husi-accent/5'
               }`}
             >
               <div className="flex items-center">
                 <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center mr-3 ${
-                  respuestas[pregunta.id] === opcion.puntos
+                  respuestas[pregunta.id] === opcion.valor
                     ? 'border-husi-dark bg-husi-dark'
                     : 'border-gray-300'
                 }`}>
-                  {respuestas[pregunta.id] === opcion.puntos && (
+                  {respuestas[pregunta.id] === opcion.valor && (
                     <div className="w-3 h-3 bg-white rounded-full" />
                   )}
                 </div>
@@ -114,7 +118,7 @@ export default function EvaluadorQuiz() {
           ← Anterior
         </button>
         <span className="text-sm text-neutral-gray self-center">
-          {Object.keys(respuestas).length} de {preguntasEvaluador.length} respondidas
+          {Object.keys(respuestas).length} de {preguntasGRC.length} respondidas
         </span>
       </div>
     </div>
