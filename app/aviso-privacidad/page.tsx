@@ -19,7 +19,7 @@ export default function AvisoPrivacidad() {
           <section className="mb-8">
             <p className="text-neutral-gray leading-relaxed">
               En conformidad con lo establecido en la Ley Federal de Protección de Datos Personales 
-              en Posesión de los Particulares, Beatriz Santiago Ramírez pone a tu disposición el 
+              en Posesión de los Particulares, SERVICIOS LYGUESA INNOVACION Y TECNOLOGIA pone a tu disposición el 
               siguiente aviso de privacidad.
             </p>
           </section>
@@ -27,7 +27,7 @@ export default function AvisoPrivacidad() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold text-husi-dark mb-4">Responsable</h2>
             <p className="text-neutral-gray leading-relaxed mb-2">
-              <strong>Beatriz Santiago Ramírez</strong>, con domicilio en:
+              <strong>SERVICIOS LYGUESA INNOVACION Y TECNOLOGIA</strong>, con domicilio en:
             </p>
             <p className="text-neutral-gray leading-relaxed ml-4">
               Av. Insurgentes 404 1<br />
@@ -114,7 +114,7 @@ export default function AvisoPrivacidad() {
             <div className="bg-husi-light/10 p-6 rounded-lg border-l-4 border-husi-light">
               <h3 className="font-bold text-husi-dark mb-2">Datos de Contacto</h3>
               <p className="text-neutral-gray">
-                <strong>Responsable:</strong> Beatriz Santiago Meza<br />
+                <strong>Responsable:</strong>SERVICIOS LYGUESA INNOVACION Y TECNOLOGIA<br />
                 <strong>Domicilio:</strong> Av. Insurgentes 404 1, Col. Roma Sur. C.P 06760, 
                 Cuauhtémoc, Ciudad de México<br />
                 <strong>Email:</strong>{' '}
