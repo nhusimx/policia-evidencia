@@ -1,16 +1,17 @@
 // app/evaluacion-sio/page.tsx
-// Esta página NO aparece en el sitemap público ni en la navegación.
-// El acceso está protegido por contraseña en el componente cliente.
-
 import type { Metadata } from 'next'
-import EvaluacionSIO from '@/components/evaluacion-sio/EvaluacionSIO'
+import dynamic from 'next/dynamic'
+
+// Cargar el componente cliente dinámicamente para evitar
+// conflicto entre metadata (server) y 'use client'
+const EvaluacionSIO = dynamic(
+  () => import('@/components/evaluacion-sio/EvaluacionSIO'),
+  { ssr: false }
+)
 
 export const metadata: Metadata = {
   title:  'Evaluación de Competencias — SIO',
-  robots: {
-    index:  false,   // no indexar en buscadores
-    follow: false,
-  },
+  robots: { index: false, follow: false },
 }
 
 export default function EvaluacionSIOPage() {
