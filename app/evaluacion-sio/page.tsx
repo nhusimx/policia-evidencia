@@ -1,18 +1,10 @@
+'use client'
+
 // app/evaluacion-sio/page.tsx
-import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
+// Página de acceso restringido — no aparece en navegación ni en buscadores.
+// El noindex se maneja en next.config.ts (ver abajo).
 
-// Cargar el componente cliente dinámicamente para evitar
-// conflicto entre metadata (server) y 'use client'
-const EvaluacionSIO = dynamic(
-  () => import('@/components/evaluacion-sio/EvaluacionSIO'),
-  { ssr: false }
-)
-
-export const metadata: Metadata = {
-  title:  'Evaluación de Competencias — SIO',
-  robots: { index: false, follow: false },
-}
+import EvaluacionSIO from '@/components/evaluacion-sio/EvaluacionSIO'
 
 export default function EvaluacionSIOPage() {
   return <EvaluacionSIO />
